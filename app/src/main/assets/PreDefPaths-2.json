@@ -1,0 +1,224 @@
+{
+
+  "L1_L2":{
+    "path_1":["S1_15"],
+    "path_2":["S2_10", "S1-13"],
+    "path_3":["S2_9", "S1_11"],
+    "path_4":["S2_18", "S4_9","S1_9"],
+    "path_5":["S2_18", "S1-13"]
+  },
+
+  "Tajrish_Azadegan":{
+    "path_1":["Beheshti"],
+    "path_2":["Dowlat", "Teatr shahr"],
+    "path_3":["Mohammadie", "Mahdie"]
+  },
+
+  "Tajrish_Kolahdooz":{
+    "path_1":["Dowlat"],
+    "path_2":["Beheshti", "Teatr shahr"],
+    "path_3":["Emam khomeini", "Shademan"]
+  },
+
+  "Tajrish_Abdolazim":{
+    "path_1":["Haftom tir"],
+    "path_2":["Dowlat", "Shemiran", "Emam hosein"],
+    "path_3":["Mohammadie", "Hefdahe shahrivr"],
+    "path_4":["Beheshti", "Vali asr"],
+    "path_5":["Emam khomeini", "Emam hosein"]
+  },
+
+  "Tajrish_Takhti":{
+    "path_1":["Mohammadie"],
+    "path_2":["Haftom tir", "Tarbiat modares"],
+    "path_3":["Dowlat", "Tohid"],
+    "path_4":["Emam khomeini", "Safavi"]
+  },
+
+  "Tajrish_TajrishSub":{
+    "path_1":[ "Shahed"]
+  },
+
+  "Tajrish_FarhangsaraSub":{
+    "path_1":[ "Emam khomeini", "Sadeghye"]
+  },
+
+  "Tajrish_AzadeganSub":{
+    "path_1":[ "Beheshti", "No bonyad"]
+  },
+
+  "Tajrish_KolahdoozSub":{
+    "path_1":[ "Dowlat", "Bime"]
+  },
+
+  "Farhangsara_Azadegan":{
+    "path_1":["Emam khomeini", "Beheshti"],
+    "path_2":["Shemiran", "Teatr shahr"],
+    "path_3":["Shademan", "Teatr shahr"],
+    "path_4":["Emam hosein", "Vali asr"],
+    "path_5":["Shemiran", "Dowlat", "Beheshti"],
+    "path_6":["Emam khomeini", "Dowlat", "Teatr shahr"],
+    "path_7":["Emam hosein",  "Haftom tir","Beheshti" ]
+  },
+
+  "Farhangsara_Kolahdooz": {
+    "path_1":["Shemiran"],
+    "path_2":["Shademan"],
+    "path_3":["Emam khomeini", "Dowlat"],
+    "path_4":["Safavi", "Tohid"],
+    "path_5":["Sadeghye", "Eram sabze"],
+    "path_6":["Emam hosein", "Meydan shohada"]
+  },
+
+  "Farhangsara_FarhangsaraSub": {
+    "path_1":["Sadeghye"]
+  },
+
+  "Farhangsara_TajrishSub": {
+    "path_1":["Emam khomeini", "Shahed"]
+  },
+
+  "Farhangsara_AzadeganSub": {
+    "path_1":["Emam khomeini", "Beheshti", "No bonyad"],
+    "path_2":["Shademan", "Teatr shahr", "No bonyad"],
+    "path_3":["Shemiran", "Teatr shahr", "No bonyad"],
+    "path_4":["Emam hosein", "Vali asr", "No bonyad"]
+  },
+
+  "Farhangsara_KolahdoozSub":{
+    "path_1":["Shademan", "Bime"],
+    "path_2":["Shemiran", "Bime"],
+    "path_3":["Sadeghye", "Eram sabze", "Bime"],
+    "path_4":["Emam khomeini", "Dowlat", "Bime"],
+    "path_5":["Safavi", "Tohid", "Bime"]
+  },
+  "Farhangsara_Takhti":{
+    "path_1":["Safavi"],
+    "path_2":["Emam hosein", "Hefdahe shahrivr"],
+    "path_3":["Emam khomeini", "Mohammadie"]
+  },
+
+  "Farhangsara_Abdolazim":{
+    "path_1":["Emam hosein"],
+    "path_2":["Emam khomeini", "Haftom tir"],
+    "path_3":["Safavi", "Tarbiat modares"]
+  },
+
+
+  "Azadegan_Kolahdooz":{
+    "path_1":["Teatr shahr"],
+    "path_2":["Teatr shahr"],
+    "path_3":["Beheshti", "Dowlat"]
+  },
+
+  "Azadegan_Abdolazim":{
+    "path_1":["Vali asr"],
+    "path_2":["Beheshti", "Haftom tir"],
+    "path_3":["Mahdie", "Hefdahe shahrivr"],
+    "path_4":["Teatr shahr", "Meydan shohada"]
+  },
+
+  "Azadegan_Takhti":{
+    "path_1":["Mahdie"],
+    "path_2":["Teatr shahr", "Tohid"],
+    "path_3":["Vali asr", "Tarbiat modares"]
+  },
+
+  "Azadegan_AzadeganSub":{
+    "path_1":["No bonyad"]
+  },
+
+  "Azadegan_TajrishSub":{
+    "path_1":["Beheshti", "Shahed"]
+  },
+
+  "Azadegan_FarhangsaraSub":{
+    "path_1":["Teatr shahr", "Shademan", "Sadeghye"],
+    "path_2":["Mahdie", "Safavi", "Sadeghye"]
+  },
+
+  "Azadegan_KolahdoozSub":{
+    "path_1":["Teatr shahr", "Bime"]
+  },
+
+  "Abdolazim_FarhangsaraSub":{
+    "path_1":["Meydan shohada", "Shemiran", "Sadeghye"],
+    "path_2":["Meydan shohada", "Emam hosein", "Sadeghye"]
+  },
+
+  "Abdolazim_Takhti":{
+    "path_1":["Hefdahe shahrivr"],
+    "path_2":["Tarbiat modares"],
+    "path_3":["Emam hosein", "Safavi"],
+    "path_4":["Shemiran", "Tohid"],
+    "path_5":["Shohada", "Tohid"],
+    "path_6":["Vali ast", "Mahdie"],
+    "path_7":["Haftom tir", "Mohammadie"]
+  },
+
+  "Abdolazim_TajrishSub":{
+    "path_1":["Haftom tir","Shahed"],
+    "path_3":["Hefdahe shahrivr", "Mohammadie", "Shahed"],
+    "path_4":["Vali asr", "Mahdie","Mohammadie", "Shahed"]
+  },
+
+  "Abdolazim_AzadeganSub":{
+    "path_1":["Emam hosein","Haftom tir", "Beheshti", "No bonyad"],
+    "path_2":["Meydan shohada","Dowlat", "Beheshti", "No bonyad"],
+    "path_3":["Vali asr", "No bonyad"]
+  },
+  "Abdolazim_KolahdoozSub":{
+    "path_1":["Meydan shohada","Bime"],
+    "path_2":["Tarbiat modares","Tohid", "Bime"],
+    "path_3":["Haftom tir", "Dowlat", "Bime"],
+    "path_4":["Bime", "Shademan", "Bime"],
+    "path_5":["Vali asr", "Teatr shahr", "Bime"]
+  },
+
+  "Takhti_TajrishSub":{
+    "path_1":["Mohammadie","Shahed"],
+    "path_2":["Safavi","Emam khomeini", "Shahed"]
+  },
+
+  "Takhti_FarhangsaraSub":{
+    "path_1":["Safavi", "Sadeghye"],
+    "path_2":["Shohada","Shemiran", "Sadeghye"],
+    "path_3":["Tarbiat modares","Safavi","Sadeghye"],
+    "path_4":["Hefdahe shahrivr","Emam hosein", "Safavi","Sadeghye"],
+    "path_5":["Mahdie","Teatr shahr", "Shademan","Sadeghye"]
+  },
+
+  "Takhti_AzadeganSub":{
+    "path_1":["Tarbiat modares","Vali asr","Beheshti", "No bonyad"],
+    "path_2":["Mohammadie","Beheshti", "No bonyad"],
+    "path_3":["Hefdahe shahrivr", "Haftom tir", "Beheshti", "No bonyad"]
+  },
+  "TajrishSub_FarhangsaraSub":{
+    "path_1":["Shahed","Emam khomeini","Sadeghye"],
+    "path_2":["Shahed", "Mohammadie","Safavi", "Sadeghye"]
+  },
+
+  "TajrishSub_AzadeganSub":{
+    "path_1":["Shahed","Beheshti","No bonyad"]
+  },
+
+  "TajrishSub_KolahdoozSub":{
+    "path_1":["Shahed","Dowlat","Bime"],
+    "path_2":["Shahed", "Mohammadie","Tohid","Bime"]
+  },
+
+  "FarhangsaraSub_KolahdoozSub":{
+    "path_1":["Eram sabze", "Bime"]
+  },
+
+  "FarhangsaraSub_AzadeganSub":{
+    "path_1":["Sadeghye", "Shademan", "No bonyad"]
+  },
+
+  "kolahdoozSub_AzadeganSub":{
+    "path_1":["Bime", "Teatr shahr", "No bonyad"]
+  }
+
+}
+
+
