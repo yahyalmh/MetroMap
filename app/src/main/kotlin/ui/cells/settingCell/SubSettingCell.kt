@@ -29,8 +29,8 @@ class SubSettingCell(context: Context) : SettingBaseCell(context) {
         checkBox.visibility = View.VISIBLE
         checkBox.setColor(Theme.getColor(Theme.key_featuredStickers_addedIcon), Color.WHITE)
 
-        addView(textView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT.toFloat(), Gravity.CENTER_VERTICAL or if (LocaleController.isRTL) Gravity.START else Gravity.END, if (LocaleController.isRTL) 0f else AndroidUtilities.dp(20f).toFloat(), 0f, if (LocaleController.isRTL) AndroidUtilities.dp(20f).toFloat() else 0f, 0f))
-        addView(checkBox, LayoutHelper.createFrame(22, 22f, Gravity.CENTER_VERTICAL or if (LocaleController.isRTL) Gravity.END else Gravity.START, if (LocaleController.isRTL) AndroidUtilities.dp(10f).toFloat() else 0f, 0f, if (LocaleController.isRTL) 0f else AndroidUtilities.dp(10f).toFloat(), 0f))
+        addView(textView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT.toFloat(), (if (LocaleController.isRTL) Gravity.RIGHT else Gravity.LEFT) or Gravity.TOP, if (LocaleController.isRTL) 23 + 48f else 23f,  7f, if (LocaleController.isRTL) 23f else 23 + 48f, 0f))
+        addView(checkBox, LayoutHelper.createFrame(22, 22f, (if (LocaleController.isRTL) Gravity.LEFT else Gravity.RIGHT) or Gravity.CENTER_VERTICAL, 23f, 0f, 23f, 0f))
         setWillNotDraw(false)
     }
 
@@ -40,7 +40,7 @@ class SubSettingCell(context: Context) : SettingBaseCell(context) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        setMeasuredDimension(widthMeasureSpec, MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45f), MeasureSpec.AT_MOST))
+        setMeasuredDimension(widthMeasureSpec, MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45f), MeasureSpec.EXACTLY))
     }
 
     override fun onDraw(canvas: Canvas?) {
