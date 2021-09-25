@@ -23,6 +23,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.yaya.map.R
 import support.actionbar.ActionBar
@@ -97,7 +98,7 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
         MetroUtil.lines.clear()
 
         actionBar!!.setBackButtonDrawable(MenuDrawable())
-        actionBar!!.title = "smart map"
+        actionBar!!.title = LocaleController.getString("app_name", R.string.app_name)
         actionBar!!.actionBarMenuOnItemClick = object : ActionBar.Companion.ActionBarMenuOnItemClick() {
             override fun onItemClick(id: Int) {
                 parentLayoute!!.drawerLayoutContainer!!.openDrawer(false)
@@ -131,7 +132,7 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
 
         floatingButton.background = drawable
         floatingButton.colorFilter = PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY)
-        floatingButton.setImageResource(R.drawable.attach_send2)
+        floatingButton.setImageResource(R.drawable.ic_directions)
 
         directionButtonContainer.addView(floatingButton, LayoutHelper.createFrame(if (Build.VERSION.SDK_INT >= 21) 56 else 60, if (Build.VERSION.SDK_INT >= 21) 56f else 60f, Gravity.LEFT or Gravity.TOP, 10f, 0f, 10F, 0f))
         fragmentView.addView(directionButtonContainer, LayoutHelper.createFrame((if (Build.VERSION.SDK_INT >= 21) 56 else 60) + 20, ((if (Build.VERSION.SDK_INT >= 21) 56 else 60) + 14).toFloat(), (/*if (LocaleController.isRTL) Gravity.LEFT else*/ Gravity.RIGHT) or Gravity.BOTTOM, if (LocaleController.isRTL) 4f else 0f, 0f, if (LocaleController.isRTL) 0f else 4f, 0f))
@@ -162,12 +163,12 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
         val linearLayout = LinearLayout(LaunchActivity.applicationContext)
         linearLayout.orientation = LinearLayout.HORIZONTAL
         linearLayout.layoutDirection = LinearLayout.LAYOUT_DIRECTION_LTR
-        linearLayout.setBackgroundColor(Theme.getColor(Theme.key_contacts_inviteBackground))
+        linearLayout.setBackgroundColor(Theme.getColor(Theme.key_chats_actionBackground))
 
         goImageView = ImageView(LaunchActivity.applicationContext)
-        goImageView.setImageResource(R.drawable.ic_send)
+        goImageView.setImageResource(R.drawable.ic_double_arrow)
         goImageView.colorFilter = PorterDuffColorFilter(Theme.getColor(Theme.key_chat_messagePanelVoicePressed), PorterDuff.Mode.MULTIPLY)
-        goImageView.setBackgroundColor(Theme.getColor(Theme.key_contacts_inviteBackground))
+//        goImageView.setBackgroundColor(Theme.getColor(Theme.key_contacts_inviteBackground))
         val goImageLayoutParams = LinearLayout.LayoutParams(0, AndroidUtilities.dp(30f), 1.0f)
         goImageLayoutParams.setMargins(0, AndroidUtilities.dp(7f), AndroidUtilities.dp(5f), 0)
         goImageView.layoutParams = goImageLayoutParams
@@ -177,7 +178,7 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
         goTextView.setAlphaNumericFilter()
 //        goTextView.setSingleLine(true)
         goTextView.setHintColor(Theme.getColor(Theme.key_Tajrish_line))
-        goTextView.setBackgroundColor(Theme.getColor(Theme.key_contacts_inviteBackground))
+        goTextView.setBackgroundColor(Theme.getColor(Theme.key_chats_actionBackground))
         goTextView.setTextColor(Theme.getColor(Theme.key_contacts_inviteText))
         goTextView.gravity = Gravity.CENTER
         goTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13f)
@@ -214,7 +215,7 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
         goImageView.setOnClickListener {
 
             if (goTextView.text.isBlank()) {
-                Toast.makeText(LaunchActivity.applicationContext, "enter staion", Toast.LENGTH_SHORT).show()
+                Toast.makeText(LaunchActivity.applicationContext, "enter station", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val stationName = goTextView.text.toString().trim()
@@ -228,7 +229,7 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
             }
         }
 
-        frameLayout.addView(linearLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.BOTTOM))
+        frameLayout.addView(linearLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT.toFloat(), Gravity.BOTTOM, 0f, 0f,0f, 3f))
         linearLayout.visibility = View.INVISIBLE
         return linearLayout
     }
@@ -358,10 +359,8 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
         } else {
             builder.setMessage(LaunchActivity.applicationContext.getString(R.string.PermissionNoLocation))
         }
-        builder.setNegativeButton(LaunchActivity.applicationContext.getString(R.string.PermissionOpenSettings), DialogInterface.OnClickListener { dialog, which ->
-            if (LaunchActivity.applicationContext == null) {
-                return@OnClickListener
-            }
+        builder.setNegativeButton(LaunchActivity.applicationContext.getString(R.string.PermissionOpenSettings)
+        ) { _, _ ->
             try {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 intent.data = Uri.parse("package:" + LaunchActivity.applicationContext.packageName)
@@ -369,7 +368,7 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
             } catch (e: Exception) {
 
             }
-        })
+        }
         builder.setPositiveButton(LaunchActivity.applicationContext.getString(R.string.OK), null)
         builder.show()
     }
@@ -377,11 +376,8 @@ class MapFragment : BaseFragment(), NotificationCenter.NotificationCenterDelegat
     override fun onResume() {
         super.onResume()
         if (checkPermission && Build.VERSION.SDK_INT >= 23) {
-            val activity = LaunchActivity.applicationContext
-            if (activity != null) {
-                checkPermission = false
-                askForPermissions()
-            }
+            checkPermission = false
+            askForPermissions()
         }
     }
 

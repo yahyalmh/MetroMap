@@ -6,8 +6,8 @@ import support.LocaleController
 */
 class Constants {
     companion object {
-        var BOS_PROPERTY = "BUS"
-        var DISABLED_PROPERTY = "DISABLED"
+        var BUS_PROPERTY = "BUS"
+        var BABY_CHANGING = "DISABLED"
         var ELEVATOR_PROPERTY = "ELEVATOR"
         const val SHARED_PREF_FILENAME = "mapPref"
         const val LANG_SHARED_KEY = "language"

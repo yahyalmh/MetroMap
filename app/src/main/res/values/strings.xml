@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">smartMap</string>
+    <string name="app_name">Metro</string>
     <string name="formatterStats12H">MMM dd yyyy, h:mm a</string>
     <string name="AppName">smartMap</string>
     <string name="PermissionNoLocationPosition">Permission No Location Position</string>

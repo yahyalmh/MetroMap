@@ -82,7 +82,7 @@ class TajrishLine(context: Context) : MetroLine(context) {
             station.long = y
             x += 10
             y += 10
-            station.cellProperty.addAll(listOf(Constants.BOS_PROPERTY, Constants.DISABLED_PROPERTY, Constants.ELEVATOR_PROPERTY))
+            station.cellProperty.addAll(listOf(Constants.BUS_PROPERTY, Constants.ELEVATOR_PROPERTY))
             station.stationNamePosition = when (stationsList.indexOf(station)) {
                 9 , 13 -> StationCell.NamePosition.Up
                 11, 18 -> StationCell.NamePosition.Down

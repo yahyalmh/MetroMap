@@ -16,7 +16,6 @@ import support.Theme
 import support.component.AndroidUtilities
 import ui.activities.LaunchActivity
 import ui.views.GuideBox
-import utils.MetroUtil
 
 
 /**
@@ -173,9 +172,9 @@ open class StationCell : FrameLayout, Cloneable {
         cellProperty.forEach { cellPro ->
             var guideBox: GuideBox? = null
             when (cellPro) {
-                Constants.BOS_PROPERTY -> guideBox = GuideBox(context, R.drawable.round_check2)
-                Constants.DISABLED_PROPERTY -> guideBox = GuideBox(context, R.drawable.round_check2)
-                Constants.ELEVATOR_PROPERTY -> guideBox = GuideBox(context, R.drawable.round_check2)
+                Constants.BUS_PROPERTY -> guideBox = GuideBox(context, R.drawable.ic_bus)
+                Constants.BABY_CHANGING -> guideBox = GuideBox(context, R.drawable.ic_baby_changing)
+                Constants.ELEVATOR_PROPERTY -> guideBox = GuideBox(context, R.drawable.ic_elevator)
             }
             guideBox!!.visibility = View.VISIBLE
             guideBox.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox), Theme.getColor(Theme.key_dialogRoundCheckBoxCheck))
