@@ -177,7 +177,7 @@ open class StationCell : FrameLayout, Cloneable {
                 Constants.ELEVATOR_PROPERTY -> guideBox = GuideBox(context, R.drawable.ic_elevator)
             }
             guideBox!!.visibility = View.VISIBLE
-            guideBox.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox), Theme.getColor(Theme.key_dialogRoundCheckBoxCheck))
+            guideBox.setColor( Theme.getColor(Theme.key_dialogRoundCheckBoxCheck), Theme.getColor(Theme.key_dialogRoundCheckBox))
             addView(guideBox)
             guideBox.setChecked(true, true)
             guideBoxList.add(guideBox)

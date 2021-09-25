@@ -39,7 +39,7 @@ class DrawerLayoutAdapter(private val mContext: Context) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: Holder, position: Int) {
         when (holder.getItemViewType()) {
             0 -> {
-                (holder.itemView as DrawerProfileCell).setUser("yahya")
+                (holder.itemView as DrawerProfileCell).setUser(LocaleController.getString("app_name", R.string.app_name))
                 holder.itemView.setBackgroundColor(Theme.getColor(Theme.key_avatar_backgroundActionBarBlue))
             }
             3 -> {
