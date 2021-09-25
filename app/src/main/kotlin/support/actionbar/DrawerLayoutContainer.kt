@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -25,7 +25,7 @@ import android.widget.ListView
 import com.yaya.map.R
 import support.component.AndroidUtilities
 
-class DrawerLayoutContainer(context: Context?) : FrameLayout(context) {
+class DrawerLayoutContainer(context: Context?) : FrameLayout(context!!) {
     private var drawerLayout: ViewGroup? = null
     private var parentActionBarLayout: ActionBarLayout? = null
     private var maybeStartTracking = false

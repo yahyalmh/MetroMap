@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.content.Context
 import android.graphics.PorterDuff
@@ -23,8 +23,8 @@ import android.view.View.OnKeyListener
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import android.widget.TextView.OnEditorActionListener
-import support.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout
-import support.ActionBar.ActionBarPopupWindow.OnDispatchKeyEventListener
+import support.actionbar.ActionBarPopupWindow.ActionBarPopupWindowLayout
+import support.actionbar.ActionBarPopupWindow.OnDispatchKeyEventListener
 import support.LayoutHelper
 import support.LocaleController
 import support.Theme
@@ -36,7 +36,7 @@ import support.component.CloseProgressDrawable2
 import support.component.EditTextBoldCursor
 import java.lang.reflect.Method
 
-class ActionBarMenuItem(context: Context?, menu: ActionBarMenu?, backgroundColor: Int, iconColor: Int) : FrameLayout(context) {
+class ActionBarMenuItem(context: Context?, menu: ActionBarMenu?, backgroundColor: Int, iconColor: Int) : FrameLayout(context!!) {
     class ActionBarMenuItemSearchListener {
         fun onSearchExpand() {}
         fun canCollapseSearch(): Boolean {
@@ -88,7 +88,7 @@ class ActionBarMenuItem(context: Context?, menu: ActionBarMenu?, backgroundColor
                     }
                     toggleSubMenu()
                 }
-                AndroidUtilities.runOnUIThread(showMenuRunnable, 200)
+                AndroidUtilities.runOnUIThread(showMenuRunnable!!, 200)
             }
         } else if (event.actionMasked == MotionEvent.ACTION_MOVE) {
             if (hasSubMenu() && (popupWindow == null || popupWindow != null && !popupWindow!!.isShowing)) {
@@ -275,7 +275,7 @@ class ActionBarMenuItem(context: Context?, menu: ActionBarMenu?, backgroundColor
             return
         }
         if (showMenuRunnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(showMenuRunnable)
+            AndroidUtilities.cancelRunOnUIThread(showMenuRunnable!!)
             showMenuRunnable = null
         }
         if (popupWindow != null && popupWindow!!.isShowing) {
@@ -388,7 +388,7 @@ class ActionBarMenuItem(context: Context?, menu: ActionBarMenu?, backgroundColor
             return this
         }
         if (value && searchContainer == null) {
-            searchContainer = object : FrameLayout(context) {
+            searchContainer = object : FrameLayout(context!!) {
                 override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
                     measureChildWithMargins(clearButton, widthMeasureSpec, 0, heightMeasureSpec, 0)
                     val width: Int

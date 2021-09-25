@@ -9,11 +9,12 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.view.View
 import support.component.AndroidUtilities
+import kotlin.math.ceil
 
 class GuideBox(context: Context, resId: Int) : View(context) {
     var checkDrawables: Drawable
     private var drawBitmap: Bitmap? = null
-    private var checkBitmap: Bitmap? = null
+    private lateinit var checkBitmap: Bitmap
     private var bitmapCanvas: Canvas? = null
     private var checkCanvas: Canvas? = null
     private var drawBackground = false
@@ -40,7 +41,7 @@ class GuideBox(context: Context, resId: Int) : View(context) {
         super.setVisibility(visibility)
         if (visibility == VISIBLE && drawBitmap == null) {
             drawBitmap = Bitmap.createBitmap(AndroidUtilities.dp(size.toFloat()), AndroidUtilities.dp(size.toFloat()), Bitmap.Config.ARGB_4444)
-            bitmapCanvas = Canvas(drawBitmap)
+            bitmapCanvas = Canvas(drawBitmap!!)
             checkBitmap = Bitmap.createBitmap(AndroidUtilities.dp(size.toFloat()), AndroidUtilities.dp(size.toFloat()), Bitmap.Config.ARGB_4444)
             checkCanvas = Canvas(checkBitmap)
         }
@@ -177,29 +178,46 @@ class GuideBox(context: Context, resId: Int) : View(context) {
             }
             if (drawBackground) {
                 paint!!.color = 0x44000000
-                canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f), paint)
-                canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f), backgroundPaint)
+                canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f),
+                    paint!!
+                )
+                backgroundPaint?.let {
+                    canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f),
+                        it
+                    )
+                }
             }
             paint!!.color = color
             if (hasBorder) {
                 rad -= AndroidUtilities.dp(2f)
             }
-            bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad, paint)
-            bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad * (1 - roundProgress), eraser)
-            canvas.drawBitmap(drawBitmap, 0f, 0f, null)
-            checkBitmap!!.eraseColor(0)
+            bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad,
+                paint!!
+            )
+            eraser?.let {
+                bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad * (1 - roundProgress),
+                    it
+                )
+            }
+            canvas.drawBitmap(drawBitmap!!, 0f, 0f, null)
+            checkBitmap.eraseColor(0)
             if (checkedText != null) {
-                val w = Math.ceil(textPaint!!.measureText(checkedText).toDouble()).toInt()
-                checkCanvas!!.drawText(checkedText, (measuredWidth - w) / 2.toFloat(), AndroidUtilities.dp(21f).toFloat(), textPaint)
+                val w = ceil(textPaint!!.measureText(checkedText).toDouble()).toInt()
+                checkCanvas!!.drawText(
+                    checkedText!!, (measuredWidth - w) / 2.toFloat(), AndroidUtilities.dp(21f).toFloat(),
+                    textPaint!!
+                )
             } else {
                 val w = checkDrawables.intrinsicWidth
                 val h = checkDrawables.intrinsicHeight
                 val x = (measuredWidth - w) / 2
                 val y = (measuredHeight - h) / 2
                 checkDrawables.setBounds(x, y + checkOffset, x + w, y + h + checkOffset)
-                checkDrawables.draw(checkCanvas)
+                checkCanvas?.let { checkDrawables.draw(it) }
             }
-            checkCanvas!!.drawCircle((measuredWidth / 2 - AndroidUtilities.dp(2.5f)).toFloat(), (measuredHeight / 2 + AndroidUtilities.dp(4f)).toFloat(), (measuredWidth + AndroidUtilities.dp(6f)) / 2 * (1 - checkProgress), eraser2)
+            checkCanvas!!.drawCircle((measuredWidth / 2 - AndroidUtilities.dp(2.5f)).toFloat(), (measuredHeight / 2 + AndroidUtilities.dp(4f)).toFloat(), (measuredWidth + AndroidUtilities.dp(6f)) / 2 * (1 - checkProgress),
+                eraser2!!
+            )
             canvas.drawBitmap(checkBitmap, 0f, 0f, null)
         }
     }
@@ -218,19 +236,19 @@ class GuideBox(context: Context, resId: Int) : View(context) {
         if (paint == null) {
             paint = Paint(Paint.ANTI_ALIAS_FLAG)
             eraser = Paint(Paint.ANTI_ALIAS_FLAG)
-            eraser!!.setColor(0)
-            eraser!!.setXfermode(PorterDuffXfermode(PorterDuff.Mode.CLEAR))
+            eraser!!.color = 0
+            eraser!!.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
             eraser2 = Paint(Paint.ANTI_ALIAS_FLAG)
-            eraser2!!.setColor(0)
-            eraser2!!.setStyle(Paint.Style.STROKE)
-            eraser2!!.setStrokeWidth(AndroidUtilities.dp(28f).toFloat())
-            eraser2!!.setXfermode(PorterDuffXfermode(PorterDuff.Mode.CLEAR))
+            eraser2!!.color = 0
+            eraser2!!.style = Paint.Style.STROKE
+            eraser2!!.strokeWidth = AndroidUtilities.dp(28f).toFloat()
+            eraser2!!.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
             backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-            backgroundPaint!!.setColor(-0x1)
-            backgroundPaint!!.setStyle(Paint.Style.STROKE)
-            backgroundPaint!!.setStrokeWidth(AndroidUtilities.dp(2f).toFloat())
+            backgroundPaint!!.color = -0x1
+            backgroundPaint!!.style = Paint.Style.STROKE
+            backgroundPaint!!.strokeWidth = AndroidUtilities.dp(2f).toFloat()
             textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
-            textPaint!!.setTextSize(AndroidUtilities.dp(18f).toFloat())
+            textPaint!!.textSize = AndroidUtilities.dp(18f).toFloat()
             //            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         }
         checkDrawables = context.resources.getDrawable(resId).mutate()

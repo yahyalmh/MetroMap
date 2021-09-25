@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
@@ -110,7 +110,7 @@ class BackDrawable(close: Boolean) : Drawable() {
     }
 
     override fun setAlpha(alpha: Int) {}
-    override fun setColorFilter(cf: ColorFilter) {}
+    override fun setColorFilter(colorFilter: ColorFilter?) {}
     override fun getOpacity(): Int {
         return PixelFormat.TRANSPARENT
     }

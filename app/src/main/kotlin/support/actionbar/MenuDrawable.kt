@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.graphics.Canvas
 import android.graphics.ColorFilter
@@ -79,8 +79,8 @@ class MenuDrawable : Drawable() {
     }
 
     override fun setAlpha(alpha: Int) {}
-    override fun setColorFilter(cf: ColorFilter) {
-        paint.colorFilter = cf
+    override fun setColorFilter(colorFilter: ColorFilter?) {
+        paint.colorFilter = colorFilter
     }
 
     override fun getOpacity(): Int {

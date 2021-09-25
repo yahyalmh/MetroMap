@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -33,7 +33,7 @@ import support.component.AndroidUtilities.Companion.hideKeyboard
 import support.component.AndroidUtilities.Companion.isTablet
 import java.util.*
 
-class ActionBarLayout(context: Context?) : FrameLayout(context) {
+class ActionBarLayout(context: Context?) : FrameLayout(context!!) {
     interface ActionBarLayoutDelegate {
         fun onPreIme(): Boolean
         fun needPresentFragment(fragment: BaseFragment?, removeLast: Boolean, forceWithoutAnimation: Boolean, layout: ActionBarLayout?): Boolean
@@ -83,7 +83,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
             val usableViewHeight: Int = rootView.height - (if (rect.top != 0) AndroidUtilities.statusBarHeight else 0) - AndroidUtilities.getViewInset(rootView)
             isKeyboardVisible = usableViewHeight - (rect.bottom - rect.top) > 0
             if (waitingForKeyboardCloseRunnable != null && !containerView!!.isKeyboardVisible && !containerViewBack!!.isKeyboardVisible) {
-                AndroidUtilities.cancelRunOnUIThread(waitingForKeyboardCloseRunnable)
+                AndroidUtilities.cancelRunOnUIThread(waitingForKeyboardCloseRunnable!!)
                 waitingForKeyboardCloseRunnable!!.run()
                 waitingForKeyboardCloseRunnable = null
             }
@@ -167,7 +167,9 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
     fun drawHeaderShadow(canvas: Canvas?, y: Int) {
         if (headerShadowDrawable != null) {
             headerShadowDrawable!!.setBounds(0, y, measuredWidth, y + headerShadowDrawable!!.getIntrinsicHeight())
-            headerShadowDrawable!!.draw(canvas)
+            if (canvas != null) {
+                headerShadowDrawable!!.draw(canvas)
+            }
         }
     }
 
@@ -255,7 +257,9 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
                     opacity = 0f
                 }
                 scrimPaint!!.color = ((-0x67000000 and -0x1000000 ushr 24) * opacity).toInt() shl 24
-                canvas.drawRect(clipLeft.toFloat(), 0f, clipRight.toFloat(), height.toFloat(), scrimPaint)
+                canvas.drawRect(clipLeft.toFloat(), 0f, clipRight.toFloat(), height.toFloat(),
+                    scrimPaint!!
+                )
             }
         }
         return result
@@ -470,7 +474,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
         onCloseAnimationEnd()
         onOpenAnimationEnd()
         if (waitingForKeyboardCloseRunnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(waitingForKeyboardCloseRunnable)
+            AndroidUtilities.cancelRunOnUIThread(waitingForKeyboardCloseRunnable!!)
             waitingForKeyboardCloseRunnable = null
         }
         if (currentAnimation != null) {
@@ -480,7 +484,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
             currentAnimation = null
         }
         if (animationRunnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(animationRunnable)
+            AndroidUtilities.cancelRunOnUIThread(animationRunnable!!)
             animationRunnable = null
         }
         alpha = 1.0f
@@ -571,7 +575,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
         if (delayedOpenAnimationRunnable == null) {
             return
         }
-        AndroidUtilities.cancelRunOnUIThread(delayedOpenAnimationRunnable)
+        AndroidUtilities.cancelRunOnUIThread(delayedOpenAnimationRunnable!!)
         delayedOpenAnimationRunnable!!.run()
         delayedOpenAnimationRunnable = null
     }
@@ -681,7 +685,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
                                 startLayoutAnimation(true, true)
                             }
                         }
-                        AndroidUtilities.runOnUIThread(waitingForKeyboardCloseRunnable, 200)
+                        AndroidUtilities.runOnUIThread(waitingForKeyboardCloseRunnable as Runnable, 200)
                     } else if (fragment.needDelayOpenAnimation()) {
                         delayedOpenAnimationRunnable = object : Runnable {
                             override fun run() {
@@ -692,7 +696,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
                                 startLayoutAnimation(true, true)
                             }
                         }
-                        AndroidUtilities.runOnUIThread(delayedOpenAnimationRunnable, 200)
+                        AndroidUtilities.runOnUIThread(delayedOpenAnimationRunnable as Runnable, 200)
                     } else {
                         startLayoutAnimation(true, true)
                     }
@@ -831,7 +835,7 @@ class ActionBarLayout(context: Context?) : FrameLayout(context) {
                                 startLayoutAnimation(false, true)
                             }
                         }
-                        AndroidUtilities.runOnUIThread(waitingForKeyboardCloseRunnable, 200)
+                        AndroidUtilities.runOnUIThread(waitingForKeyboardCloseRunnable as Runnable, 200)
                     } else {
                         startLayoutAnimation(false, true)
                     }

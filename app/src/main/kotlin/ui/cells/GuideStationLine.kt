@@ -56,10 +56,10 @@ class GuideStationLine(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas?) {
         textPaint.getTextBounds(lineNumber, 0, lineNumber!!.length, bound)
         if (LocaleController.isRTL) {
-            canvas?.drawText(lineNumber, (right - left.toFloat()) / 2 + AndroidUtilities.dp(5F).toFloat(), (bottom - top.toFloat()) / 2 + (bound.height() / 2), textPaint)
+            canvas?.drawText(lineNumber!!, (right - left.toFloat()) / 2 + AndroidUtilities.dp(5F).toFloat(), (bottom - top.toFloat()) / 2 + (bound.height() / 2), textPaint)
             canvas?.drawLine(AndroidUtilities.dp(5F).toFloat(), (bottom - top.toFloat()) / 2, ((right - left) / 2f), (bottom - top.toFloat()) / 2f, linePaint)
         } else {
-            canvas?.drawText(lineNumber, AndroidUtilities.dp(5F).toFloat(), (bottom - top.toFloat()) / 2 + (bound.height() / 2), textPaint)
+            canvas?.drawText(lineNumber!!, AndroidUtilities.dp(5F).toFloat(), (bottom - top.toFloat()) / 2 + (bound.height() / 2), textPaint)
             canvas?.drawLine(((right - left) / 2).toFloat(), (bottom - top.toFloat()) / 2, (right - left.toFloat()) -AndroidUtilities.dp(5f), (bottom - top.toFloat()) / 2, linePaint)
         }
     }

@@ -6,7 +6,7 @@
  * Copyright Nikolai Kudashov, 2013-2017.
  */
 //Thanks to https://github.com/JakeWharton/ActionBarSherlock/
-package support.ActionBar
+package support.actionbar
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -62,7 +62,7 @@ class ActionBarPopupWindow : PopupWindow {
         fun onDispatchKeyEvent(keyEvent: KeyEvent?)
     }
 
-    class ActionBarPopupWindowLayout(context: Context?) : FrameLayout(context) {
+    class ActionBarPopupWindowLayout(context: Context?) : FrameLayout(context!!) {
         private var mOnDispatchKeyEventListener: OnDispatchKeyEventListener? = null
         private var backScaleX = 1f
         private var backScaleY = 1f

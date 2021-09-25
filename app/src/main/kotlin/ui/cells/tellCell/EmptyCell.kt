@@ -10,7 +10,7 @@ package ui.cells.tellCell
 import android.content.Context
 import android.widget.FrameLayout
 
-class EmptyCell @JvmOverloads constructor(context: Context?, var cellHeight: Int = 8) : FrameLayout(context) {
+class EmptyCell @JvmOverloads constructor(context: Context?, var cellHeight: Int = 8) : FrameLayout(context!!) {
     fun setHeight(height: Int) {
         cellHeight = height
         requestLayout()

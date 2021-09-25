@@ -19,7 +19,7 @@ import support.Theme
 import support.component.AndroidUtilities.Companion.dp
 import support.component.AndroidUtilities.Companion.getTypeface
 
-class DrawerActionCell(context: Context?) : FrameLayout(context) {
+class DrawerActionCell(context: Context?) : FrameLayout(context!!) {
     private val textView: TextView
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(dp(48f), MeasureSpec.EXACTLY))

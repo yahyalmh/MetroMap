@@ -1,6 +1,5 @@
 package ui.fragments
 
-import Constants
 import RecyclerItemClickListener
 import android.content.Context
 import android.view.Gravity
@@ -11,15 +10,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yaya.map.R
-import support.ActionBar.ActionBar
-import support.ActionBar.BaseFragment
+import support.actionbar.ActionBar
+import support.actionbar.BaseFragment
 import support.LayoutHelper
 import support.LocaleController
 import support.Theme
 import support.component.AndroidUtilities
 import ui.activities.LaunchActivity
 import ui.cells.settingCell.SettingBaseCell
-import ui.cells.settingCell.SettingCell
 import ui.cells.settingCell.SubSettingCell
 
 

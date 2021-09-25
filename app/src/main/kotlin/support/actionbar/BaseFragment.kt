@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.animation.AnimatorSet
 import android.app.Activity
@@ -106,7 +106,7 @@ open class BaseFragment {
         }
     }
 
-    protected fun createActionBar(context: Context?): ActionBar {
+    protected fun createActionBar(context: Context): ActionBar {
         val actionBar = ActionBar(context)
         actionBar.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefault))
         actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSelector), false)

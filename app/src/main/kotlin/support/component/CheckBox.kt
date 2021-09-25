@@ -18,8 +18,8 @@ import android.view.View
 
 class CheckBox(context: Context, resId: Int) : View(context) {
     var checkDrawable: Drawable
-    private var drawBitmap: Bitmap? = null
-    private var checkBitmap: Bitmap? = null
+    private lateinit var drawBitmap: Bitmap
+    private lateinit var checkBitmap: Bitmap
     private var bitmapCanvas: Canvas? = null
     private var checkCanvas: Canvas? = null
     private var drawBackground = false
@@ -183,27 +183,31 @@ class CheckBox(context: Context, resId: Int) : View(context) {
             }
             if (drawBackground) {
                 paint!!.color = 0x44000000
-                canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f), paint)
+                canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f),
+                    paint!!
+                )
                 canvas.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad - AndroidUtilities.dp(1f), backgroundPaint)
             }
             paint!!.color = color
             if (hasBorder) {
                 rad -= AndroidUtilities.dp(2f)
             }
-            bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad, paint)
+            bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad,
+                paint!!
+            )
             bitmapCanvas!!.drawCircle(measuredWidth / 2.toFloat(), measuredHeight / 2.toFloat(), rad * (1 - roundProgress), eraser)
             canvas.drawBitmap(drawBitmap, 0f, 0f, null)
             checkBitmap!!.eraseColor(0)
             if (checkedText != null) {
                 val w = Math.ceil(textPaint!!.measureText(checkedText).toDouble()).toInt()
-                checkCanvas!!.drawText(checkedText, (measuredWidth - w) / 2.toFloat(), AndroidUtilities.dp(21f).toFloat(), textPaint)
+                checkCanvas!!.drawText(checkedText!!, (measuredWidth - w) / 2.toFloat(), AndroidUtilities.dp(21f).toFloat(), textPaint)
             } else {
                 val w = checkDrawable.intrinsicWidth
                 val h = checkDrawable.intrinsicHeight
                 val x = (measuredWidth - w) / 2
                 val y = (measuredHeight - h) / 2
                 checkDrawable.setBounds(x, y + checkOffset, x + w, y + h + checkOffset)
-                checkDrawable.draw(checkCanvas)
+                checkCanvas?.let { checkDrawable.draw(it) }
             }
             checkCanvas!!.drawCircle((measuredWidth / 2 - AndroidUtilities.dp(2.5f)).toFloat(), (measuredHeight / 2 + AndroidUtilities.dp(4f)).toFloat(), (measuredWidth + AndroidUtilities.dp(6f)) / 2 * (1 - checkProgress), eraser2)
             canvas.drawBitmap(checkBitmap, 0f, 0f, null)

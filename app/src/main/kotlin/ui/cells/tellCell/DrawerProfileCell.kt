@@ -22,7 +22,7 @@ import support.LayoutHelper
 import support.Theme
 import support.component.AndroidUtilities
 
-class DrawerProfileCell(context: Context?) : FrameLayout(context) {
+class DrawerProfileCell(context: Context?) : FrameLayout(context!!) {
     private val nameTextView: TextView
     private val phoneTextView: TextView
     private val shadowView: ImageView

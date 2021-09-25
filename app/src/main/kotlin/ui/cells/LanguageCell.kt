@@ -21,7 +21,7 @@ import support.LocaleController.LocaleInfo
 import support.Theme
 import support.component.AndroidUtilities
 
-class LanguageCell(context: Context?) : FrameLayout(context) {
+class LanguageCell(context: Context?) : FrameLayout(context!!) {
     private val textView: TextView
     private val textView2: TextView
     private val checkImage: ImageView

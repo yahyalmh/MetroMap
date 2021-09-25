@@ -16,7 +16,7 @@ import support.Theme
 /**
 * Created by yaya-mh on 07/08/2018 12:23 PM 01:32 PM 03:35 PM.
 */
-class GuideView(context: Context) : FrameLayout(context) {
+class GuideView(context: Context) : FrameLayout(context!!) {
 
     private val ghotbNama = ImageView(context)
     private val linesList = mutableListOf<GuideStationLine>()

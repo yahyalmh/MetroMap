@@ -105,7 +105,7 @@ class CloseProgressDrawable2 : Drawable() {
     }
 
     override fun setAlpha(alpha: Int) {}
-    override fun setColorFilter(cf: ColorFilter) {
+    override fun setColorFilter(cf: ColorFilter?) {
         paint.colorFilter = cf
     }
 

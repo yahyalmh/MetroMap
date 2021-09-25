@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -32,8 +32,7 @@ import support.component.AndroidUtilities.Companion.getTypeface
 import support.component.AndroidUtilities.Companion.isTablet
 import java.util.*
 
-class ActionBar(context: Context?) : FrameLayout(context) {
-
+class ActionBar(context: Context) : FrameLayout(context) {
 
     private var backButtonImageView: ImageView? = null
     var titleTextView: SimpleTextView? = null
@@ -374,7 +373,7 @@ class ActionBar(context: Context?) : FrameLayout(context) {
         }
     }
 
-    val isActionModeShowed: Boolean
+    private val isActionModeShowed: Boolean
         get() = actionMode != null && actionModeVisible
 
     fun onSearchFieldVisibilityChanged(visible: Boolean) {
@@ -399,7 +398,6 @@ class ActionBar(context: Context?) : FrameLayout(context) {
         extraHeight = value
     }
 
-    @JvmOverloads
     fun closeSearchField(closeKeyboard: Boolean = true) {
         if (!isSearchFieldVisible || menu == null) {
             return

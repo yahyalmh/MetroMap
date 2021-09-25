@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
@@ -205,6 +206,7 @@ class AndroidUtilities {
             } else Math.floor(density * value.toDouble()).toInt()
         }
 
+        @SuppressLint("SoonBlockedPrivateApi")
         fun getViewInset(view: View?): Int {
             if (view == null || Build.VERSION.SDK_INT < 21 || view.height == displaySize.y || view.height == displaySize.y - statusBarHeight) {
                 return 0
@@ -212,7 +214,7 @@ class AndroidUtilities {
             try {
                 if (mAttachInfoField == null) {
                     mAttachInfoField = View::class.java.getDeclaredField("mAttachInfo")
-                    mAttachInfoField!!.setAccessible(true)
+                    mAttachInfoField!!.isAccessible = true
                 }
                 val mAttachInfo = mAttachInfoField!![view]
                 if (mAttachInfo != null) {
@@ -295,11 +297,11 @@ class AndroidUtilities {
             return layer and 0x0000ffff or (version shl 16)
         }
 
-        fun runOnUIThread(runnable: Runnable?) {
+        fun runOnUIThread(runnable: Runnable) {
             runOnUIThread(runnable, 0)
         }
 
-        fun runOnUIThread(runnable: Runnable?, delay: Long) {
+        fun runOnUIThread(runnable: Runnable, delay: Long) {
             if (delay == 0L) {
                 LaunchActivity.applicationHandler.post(runnable)
             } else {
@@ -307,7 +309,7 @@ class AndroidUtilities {
             }
         }
 
-        fun cancelRunOnUIThread(runnable: Runnable?) {
+        fun cancelRunOnUIThread(runnable: Runnable) {
             LaunchActivity.applicationHandler.removeCallbacks(runnable)
         }
 

@@ -1,91 +1,28 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-    google()
-}
-
-configurations {
-    compile.exclude module: 'support-v4'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
-    useLibrary 'org.apache.http.legacy'
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-//        main.jni.srcDirs = []
-//        main.jniLibs.srcDirs = ['./jni/']
-    }
-/*    externalNativeBuild {
-        ndkBuild {
-            path "jni/Android.mk"
-        }
-    }*/
-    dexOptions {
-        jumboMode = true
-        preDexLibraries = false
-    }
+    compileSdk 30
     defaultConfig {
-
-        minSdkVersion 23 //19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-        externalNativeBuild {
-            ndkBuild {
-                arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-14"
-                abiFilters "x86", "armeabi-v7a"
-            }
-        }
         applicationId 'com.yaya.map'
-        lintOptions {
-            checkReleaseBuilds false
-            abortOnError false
-
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
         }
-    }
-    compileOptions {
-        sourceCompatibility "1.8"
-        targetCompatibility "1.8"
+        targetSdk 30
+        minSdk 23 //19
+        versionCode 100
+        versionName "1.0.0"
     }
 
-    signingConfigs {
-        debug {
-            storeFile file("config/release.keystore")
-            storePassword RELEASE_STORE_PASSWORD
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
-            v2SigningEnabled false
-        }
-
-        release {
-            storeFile file("config/release.keystore")
-            storePassword RELEASE_STORE_PASSWORD
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
-            v2SigningEnabled false
-        }
-    }
+    useLibrary 'org.apache.http.legacy'
 
     buildTypes {
         release {
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.release
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -95,78 +32,29 @@ android {
             jniDebuggable true
             signingConfig signingConfigs.debug
         }
-
-    }
-    defaultConfig.versionCode = 1155
-
-
-    flavorDimensions "minApi"
-    productFlavors {
-      /*  x86 {
-            ndk {
-                abiFilter "x86"
-            }
-            versionCode = 2
-        }
-        x86_SDK23 {
-            ndk {
-                abiFilter "x86"
-            }
-
-            minSdkVersion 23
-            versionCode = 4
-        }*/
-
-        /*armv7 {
-            ndk {
-                abiFilter "armeabi-v7a"
-            }
-            versionCode = 1
-        }
-        armv7_SDK23 {
-            ndk {
-                abiFilter "armeabi-v7a"
-            }
-
-            minSdkVersion 23
-            versionCode = 3
-        }*/
-
-        /*x64 {
-            ndk {
-                abiFilters "x86_64"
-            }
-            ext {
-                abiVersionCode = 6
-            }
-        }*/
-
-        /*x64_SDK23 {
-            ndk {
-                abiFilters "x86_64"
-            }
-            minSdkVersion 23
-            ext {
-                abiVersionCode = 8
-            }
-        }*/
-
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
-    dependencies {
-        implementation 'androidx.core:core:1.2.0-rc01'
-        implementation 'androidx.palette:palette:1.0.0'
-        implementation 'androidx.recyclerview:recyclerview:1.1.0'
-        implementation 'androidx.exifinterface:exifinterface:1.1.0'
-
-        implementation fileTree(include: ['*.jar'], dir: 'libs')
-        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+dependencies {
+    implementation "androidx.core:core-ktx:$rootProject.coreKtxVersion"
+    implementation "androidx.palette:palette-ktx:$rootProject.palleteKtxVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    implementation 'androidx.exifinterface:exifinterface:1.3.3'
 
 //        testImplementation 'junit:junit:4.12'
-        implementation files('libs/google-services-3.1.1.jar')
-
-    }
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/google-services-3.1.1.jar')
 }
 
 

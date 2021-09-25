@@ -72,14 +72,14 @@ class TakhtiLine(context: Context) : MetroLine(context) {
         super.addStations()
         stationsList.forEach { station ->
             station.stationNamePosition = when (stationsList.indexOf(station)) {
-                in 0..12 -> when (stationNamePos) {
+                in 0 until 12 -> when (stationNamePos) {
                     StationCell.NamePosition.Down -> StationCell.NamePosition.Up
                     StationCell.NamePosition.Up -> StationCell.NamePosition.Down
                     else -> {
                         StationCell.NamePosition.Up
                     }
                 }
-                in 13..15 -> StationCell.NamePosition.Left
+                in 13 until 15 -> StationCell.NamePosition.Left
                 else -> StationCell.NamePosition.Right
             }
             stationNamePos = station.stationNamePosition

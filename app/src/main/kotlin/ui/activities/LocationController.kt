@@ -44,7 +44,7 @@ class LocationController {
 
     private inner class GpsLocationListener : LocationListener {
 
-        override fun onLocationChanged(location: Location?) {
+        override fun onLocationChanged(location: Location) {
             if (location == null) {
                 return
             }

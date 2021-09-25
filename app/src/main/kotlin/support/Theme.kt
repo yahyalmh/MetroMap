@@ -1247,7 +1247,7 @@ class Theme {
                         }
 
                         override fun setAlpha(alpha: Int) {}
-                        override fun setColorFilter(colorFilter: ColorFilter) {}
+                        override fun setColorFilter(colorFilter: ColorFilter?) {}
                         override fun getOpacity(): Int {
                             return PixelFormat.UNKNOWN
                         }

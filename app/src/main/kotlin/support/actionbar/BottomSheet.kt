@@ -5,7 +5,7 @@
  *
  * Copyright Nikolai Kudashov, 2013-2017.
  */
-package support.ActionBar
+package support.actionbar
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -36,7 +36,6 @@ import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.core.view.ViewCompat
 import com.yaya.map.R
-import support.ActionBar.BottomSheet
 import support.LayoutHelper
 import support.LocaleController
 import support.Theme
@@ -78,7 +77,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
     private var delegate: BottomSheetDelegateInterface? = null
     protected var currentSheetAnimation: AnimatorSet? = null
 
-    protected inner open class ContainerView(context: Context?) : FrameLayout(context), NestedScrollingParent {
+    protected inner open class ContainerView(context: Context?) : FrameLayout(context!!), NestedScrollingParent {
         private var velocityTracker: VelocityTracker? = null
         private var startedTrackingX = 0
         private var startedTrackingY = 0
@@ -184,7 +183,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
             }
         }
 
-        override fun onTouchEvent(ev: MotionEvent): Boolean {
+        override fun onTouchEvent(ev: MotionEvent?): Boolean {
             if (isDismissed) {
                 return false
             }
@@ -336,7 +335,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
                 }
             }
             if (layoutCount == 0 && startAnimationRunnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(startAnimationRunnable)
+                AndroidUtilities.cancelRunOnUIThread(startAnimationRunnable!!)
                 startAnimationRunnable!!.run()
                 startAnimationRunnable = null
             }
@@ -383,7 +382,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
         }
     }
 
-    class BottomSheetCell(context: Context?, type: Int) : FrameLayout(context) {
+    class BottomSheetCell(context: Context?, type: Int) : FrameLayout(context!!) {
         val textView: TextView
         private val imageView: ImageView
         override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -449,11 +448,11 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
 
     override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
-        val window = window
+        val window = window!!
         window.setWindowAnimations(R.style.DialogNoAnimation)
         setContentView(container, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         if (sheetContainer == null) {
-            sheetContainer = object : FrameLayout(context) {
+            sheetContainer = object : FrameLayout(context!!) {
                 override fun hasOverlappingRendering(): Boolean {
                     return false
                 }
@@ -533,7 +532,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
     override fun show() {
         super.show()
         if (focusable) {
-            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         }
         isDismissed = false
         cancelSheetAnimation()
@@ -581,7 +580,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
         customView = view
     }
 
-    override fun setTitle(value: CharSequence) {
+    override fun setTitle(value: CharSequence?) {
         title = value
     }
 
@@ -860,7 +859,7 @@ class BottomSheet(context: Context, needFocus: Boolean) : Dialog(context, R.styl
 
     init {
         if (Build.VERSION.SDK_INT >= 21) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window!!.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         }
         val vc = ViewConfiguration.get(context)
         touchSlop = vc.scaledTouchSlop

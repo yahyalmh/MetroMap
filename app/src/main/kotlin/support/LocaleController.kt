@@ -263,7 +263,7 @@ class LocaleController {
         val preferences: SharedPreferences = LaunchActivity.applicationContext.getSharedPreferences("langconfig", Activity.MODE_PRIVATE)
         var locales = preferences.getString("locales", null)
         if (!TextUtils.isEmpty(locales)) {
-            val localesArr = locales.split("&").toTypedArray()
+            val localesArr = locales!!.split("&").toTypedArray()
             for (locale in localesArr) {
                 val localeInfo = LocaleInfo.createWithString(locale)
                 if (localeInfo != null) {
@@ -273,7 +273,7 @@ class LocaleController {
         }
         locales = preferences.getString("remote", null)
         if (!TextUtils.isEmpty(locales)) {
-            val localesArr = locales.split("&").toTypedArray()
+            val localesArr = locales!!.split("&").toTypedArray()
             for (locale in localesArr) {
                 val localeInfo = LocaleInfo.createWithString(locale)
                 localeInfo!!.shortName = localeInfo.shortName!!.replace("-", "_")

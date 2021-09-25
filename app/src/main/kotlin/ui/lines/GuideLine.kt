@@ -39,7 +39,7 @@ class GuideLine: MetroLine {
         init(cellList, lineList)
     }
     fun init(cellList: List<StationCell>, lines:List<StationLine>){
-        for (i in 0 until childCount-1){
+        for (i in 0..childCount-1){
             removeViewAt(i)
         }
 
